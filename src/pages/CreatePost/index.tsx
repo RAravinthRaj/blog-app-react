@@ -363,7 +363,7 @@ export const CreatePost = () => {
                               value={coverImage}
                               onChange={handleCoverImageChange}
                               className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
-                              placeholder="https://example.com/image.jpg"
+                              placeholder="https://example.com/image.jpg(Give image url from Google)"
                             />
                             <Image className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                           </div>
