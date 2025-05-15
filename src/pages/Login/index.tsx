@@ -36,6 +36,7 @@ const Login = () => {
         localStorage.setItem("id", user?.id);
         localStorage.setItem("username", user?.name);
         localStorage.setItem("email", user?.email);
+        localStorage.setItem("visibility", "public");
         toast.success("Login SuccessFull!!!");
 
         navigate("/home");

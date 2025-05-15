@@ -31,6 +31,9 @@ const Profile = () => {
   const [error, setError] = useState<string | null>(null);
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
+  const [visibility, setVisibility] = useState(
+    localStorage.getItem("visibility")
+  );
 
   useEffect(() => {
     const storedUsername = localStorage.getItem("username");
@@ -71,14 +74,6 @@ const Profile = () => {
       emailNotifications: !settings.emailNotifications,
     });
     console.log("Email notifications set to:", !settings.emailNotifications);
-  };
-
-  const handleProfileVisibilityChange = (event: { target: { value: any } }) => {
-    setSettings({
-      ...settings,
-      profileVisibility: event.target.value,
-    });
-    console.log("Profile visibility set to:", event.target.value);
   };
 
   const navigateToPostPage = (post: IPost) => {
@@ -492,12 +487,23 @@ const Profile = () => {
                     </p>
                   </div>
                   <select
-                    className="px-4 py-2.5 border border-gray-300 rounded-lg bg-white text-gray-800 font-medium shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                    value={settings.profileVisibility}
-                    onChange={handleProfileVisibilityChange}
+                    className="px-3 py-2.5 border border-gray-300 rounded-lg bg-white text-gray-800 font-medium shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                    onChange={(e) => {
+                      setVisibility(e.target.value);
+                    }}
                   >
-                    <option value="public">Public</option>
-                    <option value="private">Private</option>
+                    {visibility === "public" && (
+                      <>
+                        <option value="public">Public</option>
+                        <option value="private">Private</option>
+                      </>
+                    )}
+                    {visibility === "private" && (
+                      <>
+                        <option value="private">Private</option>
+                        <option value="public">Public</option>
+                      </>
+                    )}
                   </select>
                 </div>
               </div>
@@ -519,6 +525,7 @@ const Profile = () => {
                 className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition duration-300"
                 onClick={(e) => {
                   toast.success("Profile Updated");
+                  localStorage.setItem("visibility", visibility);
                 }}
               >
                 Save Changes
