@@ -6,7 +6,6 @@ import { Footer, Navbar } from "../../components";
 import { createPost } from "../../api";
 import axios from "axios";
 
-// Component for the create post form
 export const CreatePost = () => {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -20,7 +19,6 @@ export const CreatePost = () => {
   const [coverImage, setCoverImage] = useState("");
   const [content, setContent] = useState("");
 
-  // Categories with colors
   const categories = [
     { value: "Technology", color: "bg-blue-100 text-blue-700 border-blue-300" },
     { value: "Design", color: "bg-pink-100 text-pink-700 border-pink-300" },
@@ -42,15 +40,14 @@ export const CreatePost = () => {
     const imageUrl = e.target.value;
     setCoverImage(imageUrl);
 
-    // Set the preview image when the URL is updated
     if (imageUrl) {
       setPreviewImage(imageUrl);
     }
   };
 
   const handleClearImage = () => {
-    setCoverImage(""); // Reset cover image URL
-    setPreviewImage(""); // Reset image preview
+    setCoverImage("");
+    setPreviewImage("");
   };
 
   const validateForm = () => {

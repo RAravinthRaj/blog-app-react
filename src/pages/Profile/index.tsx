@@ -465,6 +465,7 @@ const Profile = () => {
                       Receive email updates about your activity
                     </p>
                   </div>
+
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input
                       type="checkbox"
@@ -472,7 +473,15 @@ const Profile = () => {
                       checked={settings.emailNotifications}
                       onChange={handleEmailNotificationsChange}
                     />
-                    <div className="w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-indigo-600"></div>
+                    <div
+                      className="w-14 h-7 bg-gray-200 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-100 
+                  peer peer-checked:bg-indigo-600 
+                  after:content-[''] after:absolute after:top-0.5 after:left-0.5 
+                  after:bg-white after:border-gray-300 after:border 
+                  after:rounded-full after:h-6 after:w-6 
+                  after:transition-transform after:duration-300 
+                  peer-checked:after:translate-x-7"
+                    ></div>
                   </label>
                 </div>
 

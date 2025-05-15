@@ -73,19 +73,18 @@ export const getLikesByPostId = async (postId: number): Promise<number[]> => {
 
 export const getUsernamesByIds = async (userIds: number[]) => {
   try {
-    // Join the userIds array into a comma-separated string
     const response = await axios.get(
       "http://localhost:8080/api/auth/getUserNames",
       {
         params: {
-          userIds: userIds.join(","), // Convert the array into a comma-separated string
+          userIds: userIds.join(","),
         },
       }
     );
-    return response.data.usernames; // Return the list of usernames
+    return response.data.usernames;
   } catch (error) {
     console.error("Error fetching usernames:", error);
-    return []; // Return an empty array if an error occurs
+    return [];
   }
 };
 
@@ -94,7 +93,7 @@ export const getCommentsByPostId = async (
 ): Promise<{ userName: string; text: string }[]> => {
   try {
     const response = await axios.get(
-      `http://localhost:8080/api/posts/${postId}/comments`, // Ensure this URL works directly in browser
+      `http://localhost:8080/api/posts/${postId}/comments`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -116,13 +115,13 @@ export const addComment = async (
 ): Promise<void> => {
   try {
     await axios.post(
-      `http://localhost:8080/api/posts/${postId}/comments`, // ✅ correct URL
-      { message }, // ✅ backend expects "message"
+      `http://localhost:8080/api/posts/${postId}/comments`,
+      { message },
       {
-        params: { userId }, // ✅ query param
+        params: { userId },
         headers: {
-          "Content-Type": "application/json", // ✅ correct content type
-          Accept: "*/*", // ✅ as in Thunder Client
+          "Content-Type": "application/json",
+          Accept: "*/*",
         },
       }
     );
@@ -135,14 +134,14 @@ export const addComment = async (
 export const fetchPostsByUserId = async (userId: number): Promise<any[]> => {
   try {
     const response = await axios.get(
-      `http://localhost:8080/api/posts/user/${userId}`, // Correct URL to fetch posts
+      `http://localhost:8080/api/posts/user/${userId}`,
       {
         headers: {
-          Accept: "application/json", // Expect JSON response
+          Accept: "application/json",
         },
       }
     );
-    return response.data; // Return the list of posts
+    return response.data;
   } catch (err) {
     console.error("Error fetching posts:", err);
     throw new Error("Failed to fetch posts");

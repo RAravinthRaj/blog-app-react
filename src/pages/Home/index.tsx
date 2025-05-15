@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useEffect, useState, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -288,7 +289,7 @@ export const BlogApp = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+                className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
                 onClick={() => setSidebarOpen(false)}
               />
 
@@ -662,24 +663,6 @@ export const BlogApp = () => {
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:grid-cols-3 xl:gap-4">
-          {/* {filteredPosts.length > 0 ? (
-            filteredPosts.map((post) => (
-              <div key={post.id} className="flex">
-                <PostCard post={post} />
-              </div>
-            ))
-          ) : (
-            <div className="col-span-full bg-white rounded-xl shadow-md p-8 text-center">
-              <h3 className="text-xl font-semibold text-gray-700 mb-2">
-                No posts found
-              </h3>
-              <p className="text-gray-500">
-                {currentView === "saved"
-                  ? "You haven't saved any posts yet. Browse and bookmark posts to see them here."
-                  : "No posts available for this category at the moment. Check back later!"}
-              </p>
-            </div>
-          )} */}
           {filteredPosts.length > 0 ? (
             filteredPosts.map((post) => {
               const userId = parseInt(localStorage.getItem("id") || "0", 10);
@@ -702,11 +685,6 @@ export const BlogApp = () => {
               <h3 className="text-xl font-semibold text-gray-700 mb-2">
                 No posts found
               </h3>
-              <p className="text-gray-500">
-                {currentView === "saved"
-                  ? "You haven't saved any posts yet. Browse and bookmark posts to see them here."
-                  : "No posts available for this category at the moment. Check back later!"}
-              </p>
             </div>
           )}
         </div>
